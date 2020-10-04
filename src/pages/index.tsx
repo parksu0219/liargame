@@ -19,11 +19,13 @@ const Route = ({ component: Component, ...rest }) => (
   <Component {...rest} />
 );
 
+const Home = () => <div> Home 부분</div>
+
 const IndexPage = () => (
   <Provider store={store}>
     <StyledLiarButtonWrapper>aaaaaaa</StyledLiarButtonWrapper>
     <Router>
-      <Route path="/" component={<Main />} />
+      <Route path="/" component={<Home />} />
     </Router>
     {/* <App /> */}
   </Provider>
