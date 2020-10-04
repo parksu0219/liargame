@@ -18,7 +18,9 @@ const store = createStore(rootReducer);
 
 const IndexPage = () => (
   <Provider store={store}>
+    aaaaaaa
     <Router>
+      
     <RouterPage path="/" pageComponent={<Main />} />
     </Router>
         {/* <App /> */}
