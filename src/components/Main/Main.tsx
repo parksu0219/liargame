@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { withRouter } from "react-router";
 import styled from "styled-components";
-import { AuthContext } from "../../firebase/Auth";
+// import { AuthContext } from "../../firebase/Auth";
 import {
   device,
   MINIMUM_GENERAL_PERSON,
@@ -14,10 +14,11 @@ import SelectCategory from "../SelectCategory";
 import CountButton from "../CountButton";
 import Footer from "../Footer";
 import More from "../More";
-import liarIcon from "../../images/liar_icon.png";
+// import liarIcon from "../../images/liar_icon.png";
 
 function Main() {
-  const { word = [] } = useContext(AuthContext);
+  const word = [{name:"a",name_en:"a",emoji:"a"}];
+  // const { word = [] } = useContext(AuthContext);
   const {
     insertGeneralPerson,
     insertLiar,
@@ -112,7 +113,6 @@ const StyledSection = styled.ul`
 `;
 
 const StyledLiarIcon = styled.div`
-  background-image: url(${liarIcon});
   width: 50px;
   height: 50px;
   background-size: 100% 100%;
@@ -123,3 +123,4 @@ const StyledLiarButtonWrapper = styled.div`
   flex-direction: column;
   align-items: center;
 `;
+/* background-image: url(${liarIcon}); */

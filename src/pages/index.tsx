@@ -15,7 +15,8 @@ const store = createStore(rootReducer);
 
 const IndexPage = () => (
   <Provider store={store}>
-        <App />
+    tast
+        {/* <App /> */}
     </Provider>
 )
 

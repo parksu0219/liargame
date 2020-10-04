@@ -2,17 +2,17 @@ import React, { useContext, useState, useEffect } from "react";
 import styled from "styled-components";
 import { withRouter } from "react-router";
 import { useRouteMatch } from "react-router-dom";
-import { AuthContext } from "../../firebase/Auth";
+// import { AuthContext } from "../../firebase/Auth";
 import usePlayInfo from "../../hooks/PlayInfo";
 import Button from "@material-ui/core/Button";
 import RefreshIcon from "@material-ui/icons/Refresh";
 import Header from "../Header";
 import CardButton  from '../CardButton';
 import { device } from "../../util";
-import liarIcon from "../../image/liar_icon.png";
+// import liarIcon from "../../image/liar_icon.png";
 
 function SelectPlayer() {
-  const { word = [] } = useContext(AuthContext);
+  // const { word = [] } = useContext(AuthContext);
   const match = useRouteMatch();
   const { generalPerson, liar } = usePlayInfo();
   const [step, setStep] = useState<number>(1); //순서
@@ -35,6 +35,7 @@ function SelectPlayer() {
 
   //초기화
   function initialState() {
+    const word = [{name:"a",name_en:"a",emoji:"a"}];
     const select = word.filter((item: any) => {
       return match.params.category === item.name;
     })[0] as any;
@@ -174,7 +175,6 @@ const StyledRestartButton = styled(Button)`
 `;
 
 const StyledLiarIcon = styled.div`
-  background-image: url(${liarIcon});
   width: 50px;
   height: 50px;
   background-size: 100% 100%;
@@ -190,3 +190,5 @@ const StyledPlayerButtonWrapper = styled.div`
   min-height: 200px;
   margin-top: 30px;
 `;
+
+/* background-image: url(${liarIcon}); */
