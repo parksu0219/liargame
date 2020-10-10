@@ -23,7 +23,7 @@ const Home = () => <div> Home 부분</div>
 
 const IndexPage = () => (
   <Provider store={store}>
-    <StyledLiarButtonWrapper>aaaaaaa</StyledLiarButtonWrapper>
+    <StyledLiarButtonWrapper>aaaaaaabbbbbbbb</StyledLiarButtonWrapper>
     <Router>
       <Main path="/" />
     </Router>
