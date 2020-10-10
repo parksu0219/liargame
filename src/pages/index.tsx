@@ -23,9 +23,9 @@ const Home = () => <div> Home 부분</div>
 
 const IndexPage = () => (
   <Provider store={store}>
-    <StyledLiarButtonWrapper>aaaaaaabbbbbbbb</StyledLiarButtonWrapper>
+    <StyledLiarButtonWrapper>aaaaaaabbbsvdvsvsb</StyledLiarButtonWrapper>
     <Router>
-      <Main path="/" />
+      <Main path="/liargame" />
     </Router>
     {/* <App /> */}
   </Provider>
