@@ -25,7 +25,8 @@ const IndexPage = () => (
   <Provider store={store}>
     <StyledLiarButtonWrapper>aaaaaaabbbsvdvsvsb</StyledLiarButtonWrapper>
     <Router>
-      <Main path="/liargame" />
+      <Home path="/" />
+      <Main path="/" />
     </Router>
     {/* <App /> */}
   </Provider>
