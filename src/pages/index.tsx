@@ -28,7 +28,7 @@ const IndexPage = () => (
     {/* <Home path="/" /> */}
     aaaabbbbbbb
     <Router>
-      <Main path="/" />      
+      <Main path="/liargame" />      
     </Router>
     {/* <App /> */}
   </Provider>
