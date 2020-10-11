@@ -1,5 +1,4 @@
 import React, { useState, useContext, useEffect } from "react";
-import { withRouter } from "react-router";
 import styled from "styled-components";
 // import { AuthContext } from "../../firebase/Auth";
 import {
@@ -78,7 +77,7 @@ function Main() {
   );
 }
 
-export default withRouter(Main);
+export default Main;
 
 const StyledWrapper = styled.div`
   padding: 15px 150px 70px;
