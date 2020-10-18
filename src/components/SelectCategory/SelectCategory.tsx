@@ -3,7 +3,9 @@ import styled from "styled-components";
 import Typography from "@material-ui/core/Typography";
 import CardButton  from '../CardButton';
 import { device } from "../../util";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "@reach/router"
+import { Link } from 'gatsby'
+// import { useHistory } from "react-router-dom";
 
 type Props = {
   data: any;
@@ -11,14 +13,19 @@ type Props = {
 
 function SelectCategory(props: Props) {
   const { data } = props;
-  const history = useHistory();
-  const playerCheckPath = `/select/${data.name}`;
+  const navigate = useNavigate();
+  // const history = useHistory();
+  // const playerCheckPath = `/liargame/select/${data.name}`;
+  const playerCheckPath = `/select`;
 
   return (
     <StyledList>
+      bb
+      <Link to={playerCheckPath}>
       <CardButton
         cardSize="category"
-        onClick={() => history.push(playerCheckPath)}
+        // onClick={() => navigate(playerCheckPath, { replace: true })}
+        // onClick={() => history.push(playerCheckPath)}
       >
         {data && (
           <React.Fragment>
@@ -34,6 +41,7 @@ function SelectCategory(props: Props) {
           </React.Fragment>
         )}
       </CardButton>
+      </Link>
     </StyledList>
   );
 }

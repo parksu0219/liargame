@@ -1,46 +1,43 @@
-import React, { useState, useContext, useEffect } from "react";
-import styled from "styled-components";
-// import { AuthContext } from "../../firebase/Auth";
+import React, { useState, useContext, useEffect } from "react"
+import styled from "styled-components"
+import { AuthContext } from "../../firebase/Auth"
+import "firebase/remote-config"
+import "firebase/app"
 import {
   device,
   MINIMUM_GENERAL_PERSON,
   MAXIMUM_GENERAL_PERSON,
   MAXIMUM_LIAR,
   MINIMUM_LIAR,
-} from "../../util";
-import usePlayInfo from "../../hooks/PlayInfo";
-import SelectCategory from "../SelectCategory";
-import CountButton from "../CountButton";
-import Footer from "../Footer";
-import More from "../More";
-// import liarIcon from "../../images/liar_icon.png";
+} from "../../util"
+import usePlayInfo from "../../hooks/PlayInfo"
+import SelectCategory from "../SelectCategory"
+import CountButton from "../CountButton"
+import Footer from "../Footer"
+import More from "../More"
+import liarIcon from "../../images/liar_icon.png"
 
 function Main() {
-  const word = [{name:"a",name_en:"a",emoji:"a"}];
-  // const { word = [] } = useContext(AuthContext);
-  const {
-    insertGeneralPerson,
-    insertLiar,
-    liar,
-    generalPerson,
-  } = usePlayInfo();
-  const [selectTab, setTab] = useState<string>("home");
+  const { word = [{ emoji: "", name: "", name_en: "" }] } = useContext(
+    AuthContext
+  )
+  const { insertGeneralPerson, insertLiar, liar, generalPerson } = usePlayInfo()
+  const [selectTab, setTab] = useState<string>("home")
 
   useEffect(() => {
-    console.log("word");
-    console.log(word); // firebase data
-    insertGeneralPerson(5);
-    insertLiar(1);
+    console.log("word")
+    console.log(word) // firebase data
+    insertGeneralPerson(3)
+    insertLiar(1)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [])
 
   function handleSelect(selectTab: string) {
-    setTab(selectTab);
+    setTab(selectTab)
   }
 
   return (
     <StyledWrapper>
-      aaa
       {selectTab === "home" ? (
         <React.Fragment>
           <StyledButtonWrapper>
@@ -65,26 +62,26 @@ function Main() {
           <StyledSection>
             {word &&
               word.map((data: any, index: number) => {
-                return <SelectCategory key={index} data={data} />;
+                return <SelectCategory key={index} data={data} />
               })}
           </StyledSection>
         </React.Fragment>
       ) : (
-        <More/>
+        <More />
       )}
       <Footer handleSelect={handleSelect} selectTab={selectTab} />
     </StyledWrapper>
-  );
+  )
 }
 
-export default Main;
+export default Main
 
 const StyledWrapper = styled.div`
   padding: 15px 150px 70px;
   @media ${device.mobileL} {
     padding: 15px 15px 70px;
   }
-`;
+`
 
 const StyledButtonWrapper = styled.div`
   width: 100%;
@@ -97,7 +94,7 @@ const StyledButtonWrapper = styled.div`
   & > * + * {
     margin-left: 15px;
   }
-`;
+`
 
 const StyledSection = styled.ul`
   display: flex;
@@ -110,17 +107,18 @@ const StyledSection = styled.ul`
       margin-right: 15px;
     }
   }
-`;
+`
 
 const StyledLiarIcon = styled.div`
+  background-image: url(${liarIcon});
   width: 50px;
   height: 50px;
   background-size: 100% 100%;
-`;
+`
 
 const StyledLiarButtonWrapper = styled.div`
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-`;
-/* background-image: url(${liarIcon}); */
+`
+/*  */

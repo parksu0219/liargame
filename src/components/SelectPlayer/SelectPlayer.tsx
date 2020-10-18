@@ -1,8 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import styled from "styled-components";
-import { withRouter } from "react-router";
-import { useRouteMatch } from "react-router-dom";
-// import { AuthContext } from "../../firebase/Auth";
+import { AuthContext } from "../../firebase/Auth";
 import usePlayInfo from "../../hooks/PlayInfo";
 import Button from "@material-ui/core/Button";
 import RefreshIcon from "@material-ui/icons/Refresh";
@@ -10,10 +8,13 @@ import Header from "../Header";
 import CardButton  from '../CardButton';
 import { device } from "../../util";
 // import liarIcon from "../../image/liar_icon.png";
+import { useParams } from "@reach/router"
+
 
 function SelectPlayer() {
+  // const { category } = props;
   // const { word = [] } = useContext(AuthContext);
-  const match = useRouteMatch();
+  const params = useParams();
   const { generalPerson, liar } = usePlayInfo();
   const [step, setStep] = useState<number>(1); //순서
   const [isDisplay, setDisplay] = useState<boolean>(false); //단어 표시 유무
@@ -35,9 +36,10 @@ function SelectPlayer() {
 
   //초기화
   function initialState() {
-    const word = [{name:"a",name_en:"a",emoji:"a"}];
+    const word = [{name:"a",name_en:"a",emoji:"a",words:["abc"]}];
     const select = word.filter((item: any) => {
-      return match.params.category === item.name;
+      // return category === item.name;
+      return "a" === item.name;
     })[0] as any;
     const randomNumber = Math.floor(Math.random() * select.words.length);
     const playersArray = shuffle(
@@ -129,7 +131,7 @@ function SelectPlayer() {
   );
 }
 
-export default withRouter(SelectPlayer);
+export default SelectPlayer;
 
 const StyledWrapper = styled.div`
   width: 100vw;
