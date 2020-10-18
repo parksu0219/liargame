@@ -1,10 +1,13 @@
 import React from "react"
-// import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Router } from "@reach/router"
-import Main from "../Main"
-import SelectPlayer from "../SelectPlayer"
 import { AuthProvider } from "../../firebase/Auth"
+import Main from "../../components/Main"
+import SelectPlayer from "../../components/SelectPlayer"
+import Header from "../../components/Header";
 import GlobalStyle from "../../theme/globalStyles"
+
+
+
 
 function App() {
   return (
@@ -12,7 +15,8 @@ function App() {
       <GlobalStyle />
       <Router>
         <Main path="/liargame"/>        
-        <SelectPlayer path="/liargame/select" />
+        {/* <Header path="/liargame/select/:category" /> */}
+        <SelectPlayer path="/liargame/select/:category" />
       </Router>
     </AuthProvider>
   )

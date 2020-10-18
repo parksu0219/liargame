@@ -3,8 +3,8 @@ import styled from "styled-components";
 import Typography from "@material-ui/core/Typography";
 import CardButton  from '../CardButton';
 import { device } from "../../util";
-import { useNavigate } from "@reach/router"
-import { Link } from 'gatsby'
+import { useNavigate, Link } from "@reach/router"
+// import { Link } from 'gatsby'
 // import { useHistory } from "react-router-dom";
 
 type Props = {
@@ -13,14 +13,13 @@ type Props = {
 
 function SelectCategory(props: Props) {
   const { data } = props;
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   // const history = useHistory();
-  // const playerCheckPath = `/liargame/select/${data.name}`;
-  const playerCheckPath = `/select`;
+  const playerCheckPath = `/liargame/select/${data.name}`;
+  // const playerCheckPath = `/liargame/select`;
 
   return (
     <StyledList>
-      bb
       <Link to={playerCheckPath}>
       <CardButton
         cardSize="category"

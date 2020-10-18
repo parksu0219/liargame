@@ -7,14 +7,12 @@ import RefreshIcon from "@material-ui/icons/Refresh";
 import Header from "../Header";
 import CardButton  from '../CardButton';
 import { device } from "../../util";
-// import liarIcon from "../../image/liar_icon.png";
-import { useParams } from "@reach/router"
+import liarIcon from "../../images/liar_icon.png";
 
 
-function SelectPlayer() {
-  // const { category } = props;
-  // const { word = [] } = useContext(AuthContext);
-  const params = useParams();
+function SelectPlayer(props) {
+  const { category } = props;
+  const { word = [] } = useContext(AuthContext);
   const { generalPerson, liar } = usePlayInfo();
   const [step, setStep] = useState<number>(1); //순서
   const [isDisplay, setDisplay] = useState<boolean>(false); //단어 표시 유무
@@ -36,10 +34,9 @@ function SelectPlayer() {
 
   //초기화
   function initialState() {
-    const word = [{name:"a",name_en:"a",emoji:"a",words:["abc"]}];
+    // const word = [{name:"a",name_en:"a",emoji:"a",words:["abc"]}];
     const select = word.filter((item: any) => {
-      // return category === item.name;
-      return "a" === item.name;
+      return category === item.name;
     })[0] as any;
     const randomNumber = Math.floor(Math.random() * select.words.length);
     const playersArray = shuffle(
@@ -180,6 +177,7 @@ const StyledLiarIcon = styled.div`
   width: 50px;
   height: 50px;
   background-size: 100% 100%;
+  background-image: url(${liarIcon});
 `;
 
 const StyledPlayerButtonWrapper = styled.div`
@@ -193,4 +191,3 @@ const StyledPlayerButtonWrapper = styled.div`
   margin-top: 30px;
 `;
 
-/* background-image: url(${liarIcon}); */
