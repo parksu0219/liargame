@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[8],{J3uE:function(e,a,t){"use strict";t.r(a);var n=t("q1tI"),l=t.n(n),r=t("YwZP"),u=t("u8zK"),c=t("LW6l"),i=t("i/7B"),o=t("uOrE");a.default=function(){return l.a.createElement(i.b,null,l.a.createElement(o.a,null),l.a.createElement(r.Router,null,l.a.createElement(u.a,{path:"/liargame"}),l.a.createElement(c.a,{path:"/liargame/select/:category"})))}}}]);
-//# sourceMappingURL=component---src-pages-app-index-tsx-ce8f15bee9d705757377.js.map
