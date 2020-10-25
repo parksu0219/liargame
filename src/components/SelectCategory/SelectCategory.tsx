@@ -15,7 +15,7 @@ function SelectCategory(props: Props) {
   const { data } = props;
   // const navigate = useNavigate();
   // const history = useHistory();
-  const playerCheckPath = `/liargame/select/${data.name}`;
+  const playerCheckPath = `/liargame/select/${data.name}/`;
   // const playerCheckPath = `/liargame/select`;
 
   return (
