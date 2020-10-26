@@ -1,3 +1,5 @@
+require('dotenv').config({ path: '.env' })
+
 module.exports = {
   siteMetadata: {
     title: `Gatsby Default Starter`,
@@ -22,23 +24,23 @@ module.exports = {
         name: `gatsby-starter-default`,
         short_name: `starter`,
         start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
+        background_color: `#ffffff`,
+        theme_color: `#ffffff`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/liar_icon.png`, // This path is relative to the root of the site.
       },
     },
     {
       resolve: "gatsby-plugin-firebase",
       options: {
         credentials: {
-          apiKey: "AIzaSyBjZzldlYtV8HpdEgWH6-v-4tNxrcYbnK8",
-          authDomain: "liar-game-85144.firebaseapp.com",
-          databaseURL: "https://liar-game-85144.firebaseio.com",
-          projectId: "liar-game-85144",
-          storageBucket: "liar-game-85144.appspot.com",
-          messagingSenderId: "847081075490",
-          appId: "1:847081075490:web:959ea4ec6adb2aba8fab7b",
+          apiKey: process.env.FIREBASE_API_KEY,
+          authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+          databaseURL: process.env.FIREBASE_DATABASE_URL,
+          projectId: process.env.FIREBASE_PROJECT_ID,
+          storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+          messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+          appId: process.env.FIREBASE_APP_ID,
         },
       },
     },

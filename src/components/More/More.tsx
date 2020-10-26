@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
 import React, { useContext } from "react";
 import styled from "styled-components";
-// import { AuthContext } from "../../firebase/Auth";
+import { AuthContext } from "../../firebase/Auth";
 import CardButton from "../CardButton";
 import Accordion from "@material-ui/core/Accordion";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
@@ -36,8 +36,7 @@ const rule = [
 ];
 
 function More() {
-  // const { version = "", fetchRemoteConfig } = useContext(AuthContext);
-  const version = ""
+  const { version = "", fetchRemoteConfig } = useContext(AuthContext);
   const ruleList = rule.map((element: any, index: number) => (
     <StyledContext key={index}>{element}</StyledContext>
   ));
