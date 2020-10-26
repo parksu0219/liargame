@@ -3,6 +3,7 @@ import "firebase/auth"
 import "firebase/firestore"
 import "firebase/functions"
 import "firebase/remote-config"
+import "firebase/analytics"
 /**
  * Implement Gatsby's SSR (Server Side Rendering) APIs in this file.
  *

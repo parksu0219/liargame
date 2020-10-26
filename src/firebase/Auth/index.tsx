@@ -25,6 +25,7 @@ export const AuthProvider = ({ children }) => {
 
   function fetchRemoteConfig() {
     const remoteConfig = firebase.remoteConfig()
+    firebase.analytics();
 
     remoteConfig.settings.minimumFetchIntervalMillis = 3600000;
     
