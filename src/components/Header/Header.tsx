@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import { navigate } from "@reach/router";
-// import { useHistory } from "react-router-dom";
 
 interface Props {
   word: string;
@@ -10,7 +9,7 @@ interface Props {
 
 function Header(props: Props) {
   const { word } = props;
-  // const history = useHistory();
+  
   return (
     <StyledHeader>
       <StyledLink onClick={()=>navigate(-1)}>

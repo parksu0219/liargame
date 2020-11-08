@@ -27,8 +27,8 @@ function Main() {
   useEffect(() => {
     console.log("word")
     console.log(word) // firebase data
-    insertGeneralPerson(3)
-    insertLiar(1)
+    // insertGeneralPerson(3)
+    // insertLiar(1)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 

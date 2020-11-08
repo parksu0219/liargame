@@ -44,17 +44,17 @@ function More() {
     <StyledMoreWrapper>
       <StyledAccordion>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-          🎮 게임방법
+          🎮 &nbsp;게임방법
         </AccordionSummary>
         <StyledAccordionDetails>{ruleList}</StyledAccordionDetails>
       </StyledAccordion>
       <CardButton cardSize="primary" onClick={()=>{}}>
         <StyledSync>
-          <span>🔃 단어 DB 동기화</span>
+          <span>🔃&nbsp;단어 DB 동기화</span>
           <span style={{ color: "#777" }}>v{version}</span>
         </StyledSync>
       </CardButton>
-      {/* <CardButton cardSize="primary">📮 단어 추가 및 수정 요청</CardButton> */}
+      <CardButton cardSize="primary" onClick={()=>window.open('https://play.google.com/store/apps/details?id=io.jkgwak.liargame')}>📱&nbsp;Android App</CardButton>
     </StyledMoreWrapper>
   );
 }
