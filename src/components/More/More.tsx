@@ -1,12 +1,15 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
-import React, { useContext } from "react";
-import styled from "styled-components";
-import { AuthContext } from "../../firebase/Auth";
-import CardButton from "../CardButton";
-import Accordion from "@material-ui/core/Accordion";
-import AccordionSummary from "@material-ui/core/AccordionSummary";
-import AccordionDetails from "@material-ui/core/AccordionDetails";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import React, { useContext } from "react"
+import styled from "styled-components"
+import { withTheme } from "@material-ui/core/styles"
+import { AuthContext } from "../../firebase/Auth"
+import Accordion from "@material-ui/core/Accordion"
+import AccordionSummary from "@material-ui/core/AccordionSummary"
+import AccordionDetails from "@material-ui/core/AccordionDetails"
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore"
+import useSetting from "../../hooks/Setting"
+import CardButton from "../CardButton"
+import DarkModeToggle from "../DarkModeToggle"
 
 const rule = [
   <React.Fragment>
@@ -33,42 +36,66 @@ const rule = [
     <span>라이어의 승리</span>,라이어가 제시어를 못 맞히면 나머지
     <span>플레이어들의 승리</span>입니다.
   </React.Fragment>,
-];
+]
 
-function More() {
-  const { version = "", fetchRemoteConfig } = useContext(AuthContext);
+type Props = {
+  theme: any
+}
+
+function More({ theme }: Props) {
+  const { themeMode } = theme
+  const { version = "", fetchRemoteConfig } = useContext(AuthContext)
+  const { isDarkMode, changedDarkMode } = useSetting()
   const ruleList = rule.map((element: any, index: number) => (
-    <StyledContext key={index}>{element}</StyledContext>
-  ));
+    <StyledContext key={index} theme={themeMode}>{element}</StyledContext>
+  ))
+
+  function onToggle() {
+    changedDarkMode(!isDarkMode)
+  }
   return (
     <StyledMoreWrapper>
+      <StyledContainer>
+        <DarkModeToggle isDarkMode={isDarkMode} onChange={onToggle} />
+      </StyledContainer>
       <StyledAccordion>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           🎮 &nbsp;게임방법
         </AccordionSummary>
-        <StyledAccordionDetails>{ruleList}</StyledAccordionDetails>
+        <StyledAccordionDetails>
+          {ruleList}
+        </StyledAccordionDetails>
       </StyledAccordion>
-      <CardButton cardSize="primary" onClick={()=>{}}>
+      <CardButton cardSize="primary">
         <StyledSync>
           <span>🔃&nbsp;단어 DB 동기화</span>
           <span style={{ color: "#777" }}>v{version}</span>
         </StyledSync>
       </CardButton>
-      <CardButton cardSize="primary" onClick={()=>window.open('https://play.google.com/store/apps/details?id=io.jkgwak.liargame')}>📱&nbsp;Android App</CardButton>
+      <CardButton
+        cardSize="primary"
+        onClick={() =>
+          window.open(
+            "https://play.google.com/store/apps/details?id=io.jkgwak.liargame"
+          )
+        }
+      >
+        📱&nbsp;Android App
+      </CardButton>
     </StyledMoreWrapper>
-  );
+  )
 }
 
-export default More;
+export default withTheme(More)
 
 const StyledMoreWrapper = styled.div`
   & > * + * {
     margin-top: 20px;
   }
-`;
+`
 
 const StyledContext = styled.div`
-  color: black;
+  color: ${({ theme }) => theme.colors.text};
   font-size: 14px;
   line-height: 1.5;
   & > span {
@@ -77,23 +104,35 @@ const StyledContext = styled.div`
   & > p {
     margin-top: 5px;
   }
-`;
+`
 
 const StyledAccordion = styled(Accordion)`
   font-size: 18px;
   font-weight: bold;
   border-radius: 20px !important;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-`;
+  &::before {
+    background-color: transparent !important;
+  }
+`
 
 const StyledAccordionDetails = styled(AccordionDetails)`
   & > * + * {
     margin-top: 15px;
   }
-`;
+`
 
 const StyledSync = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-`;
+`
+const StyledContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 6px 15px;
+  & > * + * {
+    margin-left: 10px;
+  }
+`

@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import styled from "styled-components";
+import { withTheme } from "@material-ui/core/styles"
 import { AuthContext } from "../../firebase/Auth";
 import usePlayInfo from "../../hooks/PlayInfo";
 import Button from "@material-ui/core/Button";
@@ -9,9 +10,13 @@ import CardButton  from '../CardButton';
 import { device } from "../../util";
 import liarIcon from "../../images/liar_icon.png";
 
+type Props = {
+  category: any;
+  theme: any;
+}
 
-function SelectPlayer(props) {
-  const { category } = props;
+function SelectPlayer(props: Props) {
+  const { category, theme } = props;
   const { word = [] } = useContext(AuthContext);
   const { generalPerson, liar } = usePlayInfo();
   const [step, setStep] = useState<number>(1); //순서
@@ -77,7 +82,7 @@ function SelectPlayer(props) {
     <StyledWrapper>
       <Header word={`${selectData.emoji} ${selectData.name}`} />
       <StyledMainSection>
-        <StyledStepTitle>
+        <StyledStepTitle theme={theme.themeMode}>
           {isStart && (
             <React.Fragment>
               당신은&nbsp;<StyledHighLight>{step}번째</StyledHighLight>
@@ -111,7 +116,7 @@ function SelectPlayer(props) {
         {isStart ? (
           isDisplay ? (
             // eslint-disable-next-line jsx-a11y/accessible-emoji
-            <StyledNoticeText>
+            <StyledNoticeText theme={theme.themeMode}>
               누른&nbsp;후에&nbsp;다음&nbsp;사람에게&nbsp;넘겨주세요&nbsp;👆
             </StyledNoticeText>
           ) : (
@@ -128,7 +133,7 @@ function SelectPlayer(props) {
   );
 }
 
-export default SelectPlayer;
+export default withTheme(SelectPlayer);
 
 const StyledWrapper = styled.div`
   width: 100vw;
@@ -150,8 +155,8 @@ const StyledMainSection = styled.div`
 const StyledStepTitle = styled.p`
   font-size: 20px;
   font-weight: bold;
-  color: black;
   min-height: 24px;
+  color: ${({ theme }) => theme.colors.text};
 `;
 
 const StyledHighLight = styled.span`
@@ -159,7 +164,7 @@ const StyledHighLight = styled.span`
 `;
 
 const StyledNoticeText = styled.p`
-  color: #000000;
+  color: ${({ theme }) => theme.colors.text};
   font-weight: bold;
   margin-top: 20px;
 `;

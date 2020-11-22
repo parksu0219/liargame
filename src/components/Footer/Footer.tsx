@@ -1,32 +1,37 @@
-import React from "react";
-import styled from "styled-components";
-import Button from "@material-ui/core/Button";
-import { device } from "../../util";
-import HomeIcon from "@material-ui/icons/Home";
-import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
+import React from "react"
+import styled from "styled-components"
+import Button from "@material-ui/core/Button"
+import { device } from "../../util"
+import HomeIcon from "@material-ui/icons/Home"
+import MoreHorizIcon from "@material-ui/icons/MoreHoriz"
+import { withTheme } from '@material-ui/core/styles';
 
 interface Props {
-  handleSelect: (selectTab: string)=>void; 
-  selectTab: string;
+  handleSelect: (selectTab: string) => void
+  selectTab: string
+  theme: any
 }
 
-function Footer({handleSelect, selectTab}:Props) {
+function Footer({ handleSelect, selectTab, theme }: Props) {
+  const { themeMode } = theme;
   return (
-    <StyledFooter>
+    <StyledFooter theme={themeMode}>
       <StyledFooterContainer>
-        <StyledMenu onClick={()=>handleSelect("home")}>
-          <HomeIcon color={selectTab === "home"?"inherit":"disabled"}/>홈
+        <StyledMenu onClick={() => handleSelect("home")}>
+          <HomeIcon color={selectTab === "home" ? "inherit" : "disabled"} />홈
         </StyledMenu>
-        <StyledMenu onClick={()=>handleSelect("more")}>
-          <MoreHorizIcon color={selectTab === "more"?"inherit":"disabled"}/>
+        <StyledMenu onClick={() => handleSelect("more")}>
+          <MoreHorizIcon
+            color={selectTab === "more" ? "inherit" : "disabled"}
+          />
           더보기
         </StyledMenu>
       </StyledFooterContainer>
     </StyledFooter>
-  );
+  )
 }
 
-export default Footer;
+export default withTheme(Footer);
 
 const StyledFooter = styled.div`
   position: fixed;
@@ -34,9 +39,9 @@ const StyledFooter = styled.div`
   bottom: 0px;
   width: 100%;
   height: 50px;
-  background-color: #ffffff;
+  background-color: ${({ theme }) => theme.colors.buttonBackgounrd };
   box-shadow: 0 -5px 5px -5px #333;
-`;
+`
 
 const StyledFooterContainer = styled.div`
   display: flex;
@@ -44,7 +49,7 @@ const StyledFooterContainer = styled.div`
   @media ${device.mobileL} {
     padding: 0 15px;
   }
-`;
+`
 
 const StyledMenu = styled(Button)`
   width: 100%;
@@ -55,4 +60,4 @@ const StyledMenu = styled(Button)`
     flex-direction: column;
     font-size: 12px;
   }
-`;
+`

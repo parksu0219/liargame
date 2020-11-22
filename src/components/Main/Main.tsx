@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react"
-import styled from "styled-components"
+import styled from "styled-components";
 import { AuthContext } from "../../firebase/Auth"
 import "firebase/remote-config"
 import "firebase/app"
@@ -27,9 +27,6 @@ function Main() {
   useEffect(() => {
     console.log("word")
     console.log(word) // firebase data
-    // insertGeneralPerson(3)
-    // insertLiar(1)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   function handleSelect(selectTab: string) {
@@ -74,7 +71,8 @@ function Main() {
   )
 }
 
-export default Main
+
+export default Main;
 
 const StyledWrapper = styled.div`
   padding: 15px 150px 70px;

@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
 import playInfo from './PlayInfo';
+import setting from './Setting';
 
 const rootReducer = combineReducers({
-    playInfo
+    playInfo,
+    setting
 });
 
 export default rootReducer
