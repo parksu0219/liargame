@@ -1,4 +1,6 @@
-## 🕵 liar game
+## 🕵 Liar game
+
+I made Liar game in web version for studying.
 
 ### Play
 https://parksu0219.github.io/liargame/
