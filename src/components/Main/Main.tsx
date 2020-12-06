@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react"
-import styled from "styled-components";
+import styled from "styled-components"
 import { AuthContext } from "../../firebase/Auth"
 import "firebase/remote-config"
 import "firebase/app"
@@ -11,18 +11,21 @@ import {
   MINIMUM_LIAR,
 } from "../../util"
 import usePlayInfo from "../../hooks/PlayInfo"
+import useSetting from "../../hooks/Setting"
 import SelectCategory from "../SelectCategory"
 import CountButton from "../CountButton"
 import Footer from "../Footer"
 import More from "../More"
-import liarIcon from "../../images/liar_icon.png"
+import liarIconBlack from "../../images/liar_icon_black.png"
+import liarIconWhite from "../../images/liar_icon_white.png"
 
 function Main() {
+  const { isDarkMode } = useSetting();
   const { word = [{ emoji: "", name: "", name_en: "" }] } = useContext(
     AuthContext
-  )
-  const { insertGeneralPerson, insertLiar, liar, generalPerson } = usePlayInfo()
-  const [selectTab, setTab] = useState<string>("home")
+  );
+  const { insertGeneralPerson, insertLiar, liar, generalPerson } = usePlayInfo();
+  const [selectTab, setTab] = useState<string>("home");
 
   useEffect(() => {
     console.log("word")
@@ -46,7 +49,7 @@ function Main() {
               minCount={MINIMUM_GENERAL_PERSON}
             />
             <StyledLiarButtonWrapper>
-              <StyledLiarIcon />
+              <StyledLiarIcon isDarkMode={isDarkMode} />
               <CountButton
                 count={liar}
                 onIncrease={() => insertLiar(liar + 1)}
@@ -71,8 +74,7 @@ function Main() {
   )
 }
 
-
-export default Main;
+export default Main
 
 const StyledWrapper = styled.div`
   padding: 15px 150px 70px;
@@ -108,7 +110,7 @@ const StyledSection = styled.ul`
 `
 
 const StyledLiarIcon = styled.div`
-  background-image: url(${liarIcon});
+  background-image: ${({isDarkMode}) => `url(${isDarkMode ? liarIconWhite : liarIconBlack})`};
   width: 50px;
   height: 50px;
   background-size: 100% 100%;
@@ -119,4 +121,3 @@ const StyledLiarButtonWrapper = styled.div`
   flex-direction: column;
   align-items: center;
 `
-/*  */

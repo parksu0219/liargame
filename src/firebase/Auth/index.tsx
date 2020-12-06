@@ -38,7 +38,6 @@ export const AuthProvider = ({ children }) => {
         setVersion(wordsVersion)
         setWordData(JSON.parse(configData))
         setPending(false)
-        console.log("단어 수정")
       })
       .catch(err => {
         setError(true)

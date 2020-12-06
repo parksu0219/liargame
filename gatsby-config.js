@@ -27,7 +27,7 @@ module.exports = {
         background_color: `#ffffff`,
         theme_color: `#ffffff`,
         display: `minimal-ui`,
-        icon: `src/images/liar_icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/liar_icon_black.png`, // This path is relative to the root of the site.
       },
     },
     {

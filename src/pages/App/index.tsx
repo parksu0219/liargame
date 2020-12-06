@@ -16,9 +16,8 @@ declare module "@material-ui/core/styles/createMuiTheme" {
 }
 
 function App() {
-  const { isDarkMode } = useSetting()
-  const themeMode = isDarkMode ? "dark" : "light"
-  themeMode
+  const { isDarkMode } = useSetting();
+  
   const theme = useMemo(
     () =>
       createMuiTheme({

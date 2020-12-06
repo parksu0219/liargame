@@ -10,3 +10,5 @@ import "firebase/firestore"
 import "firebase/functions"
 import "firebase/remote-config"
 import "firebase/analytics"
+import wrapWithProvider from "./wrap-with-provider"
+export const wrapRootElement = wrapWithProvider
