@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import firebase from "gatsby-plugin-firebase"
 import "firebase/remote-config"
-import Loader from "../../components/Loader"
+import Loader from "../../../components/Loader"
 
 export type ContextProps = {
   word: []
@@ -17,7 +17,7 @@ export const AuthContext = React.createContext<Partial<ContextProps>>({})
 /**
  * login時、user情報を保存
  */
-export const AuthProvider = ({ children }) => {
+export function AuthProvider({ children }) {
   const [wordData, setWordData] = useState<Data>([])
   const [version, setVersion] = useState<string>("")
   const [pending, setPending] = useState<boolean>(true)
@@ -25,10 +25,10 @@ export const AuthProvider = ({ children }) => {
 
   function fetchRemoteConfig() {
     const remoteConfig = firebase.remoteConfig()
-    firebase.analytics();
+    firebase.analytics()
 
-    remoteConfig.settings.minimumFetchIntervalMillis = 3600000;
-    
+    remoteConfig.settings.minimumFetchIntervalMillis = 3600000
+
     remoteConfig
       .fetchAndActivate()
       .then(() => {

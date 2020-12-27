@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react"
 import styled from "styled-components"
 import { withTheme } from "@material-ui/core/styles"
-import { AuthContext } from "../../firebase/Auth"
+import { AuthContext } from "../../api/firebase/Auth"
 import usePlayInfo from "../../hooks/PlayInfo"
 import useSetting from "../../hooks/Setting"
 import Button from "@material-ui/core/Button"

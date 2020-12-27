@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react"
 import styled from "styled-components"
-import { AuthContext } from "../../firebase/Auth"
+import { AuthContext } from "../../api/firebase/Auth"
 import "firebase/remote-config"
 import "firebase/app"
 import {
@@ -28,8 +28,8 @@ function Main() {
   const [selectTab, setTab] = useState<string>("home");
 
   useEffect(() => {
-    console.log("word")
-    console.log(word) // firebase data
+    // console.log("word")
+    // console.log(word) firebase data
   }, [])
 
   function handleSelect(selectTab: string) {

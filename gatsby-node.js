@@ -8,24 +8,38 @@
 
 const fs = require("fs")
 
+// MEME(PARK):"yarn develop"할떄, 사용
+// exports.onCreateWebpackConfig = ({ stage, actions, getConfig }) => {
+//   actions.setWebpackConfig({
+//     externals: getConfig().externals.concat(function(context, request, callback) {
+//       const regex = /firebase(\/([\w\d]+))*/;
+//       // const regex = /^@?firebase(\/(.+))?/;
+//       if (regex.test(request)) {
+//         return callback(null, `umd ${request}`);
+//       }
+//       callback();
+//     }),
+//   });
+// };
+
+// MEME(PARK):"yarn deploy"할떄, 사용
 exports.onCreateWebpackConfig = ({ stage, actions, getConfig }) => {
-  if (stage === "build-html") {
+  if (stage === 'build-html') {
     actions.setWebpackConfig({
-      externals: getConfig().externals.concat(function (
-        context,
-        request,
-        callback
-      ) {
-        const regex = /^@?firebase(\/(.+))?/
-        // exclude firebase products from being bundled, so they will be loaded using require() at runtime.
-        if (regex.test(request)) {
-          return callback(null, "umd " + request)
+      // Don't bundle modules that reference browser globals such as `window` and `IDBIndex` during SSR.
+      // See: https://github.com/gatsbyjs/gatsby/issues/17725
+      externals: getConfig().externals.concat(function(_context, request, callback) {
+        // Exclude bundling firebase* and react-firebase*
+        // These are instead required at runtime.
+        if (/^@?(react-)?firebase(.*)/.test(request)) {
+          console.log('Excluding bundling of: ' + request);
+          return callback(null, 'umd ' + request);
         }
-        callback()
+        callback();
       }),
-    })
+    });
   }
-}
+};
 
 exports.onPostBuild = () => {
   fs.copyFile(`./firebase.json`, `./public/firebase.json`, err => {

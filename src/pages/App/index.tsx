@@ -1,9 +1,10 @@
 import React, { useMemo } from "react"
 import { Router } from "@reach/router"
-import { AuthProvider } from "../../firebase/Auth"
+import { AuthProvider } from "../../api/firebase/Auth"
 import Main from "../../components/Main"
 import SelectPlayer from "../../components/SelectPlayer"
 import Header from "../../components/Header"
+import RedirectPage from "../../components/RedirectPage"
 import { lightTheme, darkTheme } from "../../theme/theme"
 import GlobalStyle from "../../theme/globalStyles"
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles"
@@ -16,8 +17,8 @@ declare module "@material-ui/core/styles/createMuiTheme" {
 }
 
 function App() {
-  const { isDarkMode } = useSetting();
-  
+  const { isDarkMode } = useSetting()
+
   const theme = useMemo(
     () =>
       createMuiTheme({
@@ -38,6 +39,10 @@ function App() {
           <SelectPlayer path="/liargame/select/:category">
             <Header path="/liargame/select/:category" />
           </SelectPlayer>
+          <RedirectPage
+            path="/liargame/redirect"
+            url={process.env.GATSBY_KAKAO_SHARE_ANDROID}
+          />
         </Router>
       </ThemeProvider>
     </AuthProvider>

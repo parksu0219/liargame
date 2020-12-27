@@ -1,8 +1,7 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
-import React, { useContext } from "react"
+import React from "react"
 import styled from "styled-components"
 import { withTheme } from "@material-ui/core/styles"
-import { AuthContext } from "../../firebase/Auth"
 import Accordion from "@material-ui/core/Accordion"
 import AccordionSummary from "@material-ui/core/AccordionSummary"
 import AccordionDetails from "@material-ui/core/AccordionDetails"
@@ -10,6 +9,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore"
 import useSetting from "../../hooks/Setting"
 import CardButton from "../CardButton"
 import DarkModeToggle from "../DarkModeToggle"
+import KakaoShareButton from "../KakaoShareButton"
 
 const rule = [
   <React.Fragment>
@@ -44,10 +44,11 @@ type Props = {
 
 function More({ theme }: Props) {
   const { themeMode } = theme
-  const { version = "", fetchRemoteConfig } = useContext(AuthContext)
   const { isDarkMode, changedDarkMode } = useSetting()
   const ruleList = rule.map((element: any, index: number) => (
-    <StyledContext key={index} theme={themeMode}>{element}</StyledContext>
+    <StyledContext key={index} theme={themeMode}>
+      {element}
+    </StyledContext>
   ))
 
   function onToggle() {
@@ -62,16 +63,8 @@ function More({ theme }: Props) {
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           🎮 &nbsp;게임방법
         </AccordionSummary>
-        <StyledAccordionDetails>
-          {ruleList}
-        </StyledAccordionDetails>
+        <StyledAccordionDetails>{ruleList}</StyledAccordionDetails>
       </StyledAccordion>
-      <CardButton cardSize="primary">
-        <StyledSync>
-          <span>🔃&nbsp;단어 DB 동기화</span>
-          <span style={{ color: "#777" }}>v{version}</span>
-        </StyledSync>
-      </CardButton>
       <CardButton
         cardSize="primary"
         onClick={() =>
@@ -80,8 +73,11 @@ function More({ theme }: Props) {
           )
         }
       >
-        📱&nbsp;Android App
+        📱&nbsp;&nbsp;Android App
       </CardButton>
+      <StyledContainer>
+        <KakaoShareButton />
+      </StyledContainer>
     </StyledMoreWrapper>
   )
 }
@@ -122,16 +118,11 @@ const StyledAccordionDetails = styled(AccordionDetails)`
   }
 `
 
-const StyledSync = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`
 const StyledContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding: 6px 15px;
+  /* padding: 6px 15px; */
   & > * + * {
     margin-left: 10px;
   }
