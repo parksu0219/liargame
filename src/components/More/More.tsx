@@ -69,11 +69,21 @@ function More({ theme }: Props) {
         cardSize="primary"
         onClick={() =>
           window.open(
+            "https://forms.gle/ENDNYzknSzxr4S3J7"
+          )
+        }
+      >
+        💌 &nbsp;라이어게임 문의하기
+      </CardButton>
+      <CardButton
+        cardSize="primary"
+        onClick={() =>
+          window.open(
             "https://play.google.com/store/apps/details?id=io.jkgwak.liargame"
           )
         }
       >
-        📱&nbsp;&nbsp;Android App
+        📱 &nbsp;Android App
       </CardButton>
       <StyledContainer>
         <KakaoShareButton />

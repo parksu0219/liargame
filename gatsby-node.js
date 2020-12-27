@@ -4,8 +4,6 @@
  * See: https://www.gatsbyjs.com/docs/node-apis/
  */
 
-// You can delete this file if you're not using it
-
 const fs = require("fs")
 
 // MEME(PARK):"yarn develop"할떄, 사용
